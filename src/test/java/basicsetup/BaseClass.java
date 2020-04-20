@@ -30,7 +30,7 @@ public class BaseClass {
 	public WebDriver setUp() throws IOException {
 		
 		//Properties file path
-  		String path = "/Users/satyadeep/Downloads/Maven-Project-with-DDT-master/src/test/java/testdata.properties";
+  		String path = "/Users/satyadeep/Downloads/Amazon_mvn-project-DDT/src/test/java/testdata.properties";
   		
   		//Creating object of Properties class
   		Properties prop = new Properties();

@@ -21,7 +21,7 @@ public class DataProviderClass {
 	@DataProvider(name = "productData")
 	public static Object[][] getProductData() {
 		return new Object[][] {
-			{"head first java", "head first python"}
+			{"Sony 55 inch TV"}
 			};
 	}
 	
