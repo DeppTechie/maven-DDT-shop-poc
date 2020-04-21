@@ -14,7 +14,7 @@ public class DataProviderClass {
 
 	/*This method provides input data to the test case addProductsToShoppingCart() in TestClass.
 	 * Data is provided in the below format as user wants to search for two different products and add to the shopping cart
-	 * product1, product2
+	 * product1
 	 * This format can be changed  based on the requirements.
 	 */
 	

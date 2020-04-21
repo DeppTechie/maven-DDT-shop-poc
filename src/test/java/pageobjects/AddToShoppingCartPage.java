@@ -7,12 +7,14 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 import java.util.List;
+import java.util.Random;
 
 public class AddToShoppingCartPage {
     public static WebElement element = null;
@@ -21,54 +23,33 @@ public class AddToShoppingCartPage {
         element = driver.findElement(By.id("twotabsearchtextbox"));
         element.clear();
         element.sendKeys(product);
+        element.sendKeys(Keys.ENTER);
     }
-
-    public static void clickSearchButton(WebDriver driver) {
-        driver.findElement(By.xpath("//input[@class='nav-input']")).click();
-    }
-//
-//    public static void addToShoppingCart(WebDriver driver) {
-//        driver.findElement(By.id("add-to-cart-button")).click();
-//    }
-//
-//    public static void clickOnShoppingCart(WebDriver driver) {
-//        driver.findElement(By.id("nav-cart-count")).click();
-//    }
 
     public static void clickOnProceedCheckout(WebDriver driver) {
-    //    driver.findElement(By.id("wishListMainButton-announce")).click();
+        //    driver.findElement(By.id("wishListMainButton-announce")).click();
+        driver.findElement(By.xpath("//a[@id='wishListMainButton-announce']")).click();
 
-         driver.findElement(By.xpath("//a[@id='wishListMainButton-announce']")).click();
-
-      //  driver.findElement(By.xpath("//input[@name='proceedToCheckout']")).click();
     }
 
-
-    //Product1: locator for Head first java book search
+    //Product1: locator for Sony 55 inch TV
     public static void clickOnProduct(WebDriver driver) {
-       List<WebElement> resultsList = driver.findElements(By.xpath(".//*[starts-with(@class, 'result_')]"));
 
-
-        for (WebElement result:resultsList) {
-            System.out.println(result.getText());
-
-        }
-
-
-
-
+        int searchCnt = driver.findElements(By.cssSelector("div.sg-col-inner > div.a-section.a-spacing-none > h2.a-size-mini.a-spacing-none.a-color-base.s-line-clamp-2 > a.a-link-normal.a-text-normal > span")).size();
+        System.out.println(" The total Number of Products for the search is :  " + searchCnt);
+        Random rand = new Random();
+        int rand_int1 = rand.nextInt(searchCnt);
+        driver.findElement(By.xpath("//div[@class='s-result-list s-search-results sg-row']/div[" + rand_int1 + "]//div[@class='a-section a-spacing-none'][1]")).click();
     }
 
 
     //	Method to search and add products to shopping cart
     public static void addProductToShoppingCart(WebDriver driver, String product) {
 //		To add product : Sony 55-inch TV Set
-        Reporter.log("Searching for Sony 55-inch TV Set", true);
+        Reporter.log("Searching for Product Interested to Shop", true);
         enterProductToSearch(driver, product);
-        clickSearchButton(driver);
         clickOnProduct(driver);
-      //  addToShoppingCart(driver);
-        Reporter.log("Searched Sony 55-inch TV and added to the shopping cart", true);
+        Reporter.log("Searched Product Interested to Shop and added to the shopping cart", true);
 
     }
 
