@@ -64,6 +64,7 @@ public class BaseClass {
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		Reporter.log("The Window is now maximized for better view");
 		driver.get(prop.getProperty("url"));
 		return driver;
 	}
