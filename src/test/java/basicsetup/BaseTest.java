@@ -14,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -40,20 +42,16 @@ public class BaseClass {
   		
   		prop.load(fs);
   		
-  		//firefox driver type and driver path setting
-		System.setProperty(prop.getProperty("fdrivertype"), prop.getProperty("fdriverpath"));
-		
-		//chrome driver type and driver path setting
-		System.setProperty(prop.getProperty("cdrivertype"), prop.getProperty("cdriverpath"));
-		
-		//Invoking the browser based on the input provided from the properties file
+  		//Invoking the browser based on the input provided from the properties file
 		if(prop.getProperty("browser").equals("firefox"))
 		{
+			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 			Reporter.log("Running test on Firefox browser");
 		}
 		else if(prop.getProperty("browser").equals("chrome"))
 		{
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 			Reporter.log("Running test on chrome browser");
 		}
