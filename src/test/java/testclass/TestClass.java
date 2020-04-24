@@ -8,25 +8,25 @@
 package testclass;
 
 
+import basicsetup.BaseTest;
+import org.testng.annotations.Listeners;
+import org.testng.IReporter;
 import org.testng.annotations.Test;
-import basicsetup.BaseClass;
+
+
 import pageobjects.AddToShoppingCartPage;
 
 import java.io.IOException;
 
-public class TestClass extends BaseClass {
+@Listeners(CustomListener.class)
+
+public class TestClass extends BaseTest {
 
 
     @Test(priority = 1, dataProvider = "productData", dataProviderClass = DataProviderClass.class)
     public void addProductsToShoppingCart(String product) throws IOException {
         AddToShoppingCartPage.addProductToShoppingCart(driver, product);
     }
-
-
-//    @Test(priority = 2)
-//    public void validateShoppingCartItems() throws IOException {
-//        AddToShoppingCartPage.validateShoppingCart(driver);
-//    }
 
 }
 

@@ -11,10 +11,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.IReporter;
 import org.testng.Reporter;
 
 import java.util.Random;
+
 
 public class AddToShoppingCartPage {
     public static WebElement element = null;
@@ -23,7 +23,7 @@ public class AddToShoppingCartPage {
 
 
         String pageName = driver.getTitle();
-        System.out.println("The Name of the Page is -----" + pageName);
+        Reporter.log("The Name of the Page Launched is -----" + pageName, true);
 
         Assert.assertEquals(pageName, "Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more", "The right page is launched");
 
@@ -37,38 +37,42 @@ public class AddToShoppingCartPage {
     public static void clickOnProceedCheckout(WebDriver driver) {
 
 
-        String ProductTitle = driver.findElement(By.id("productTitle")).getText();
-        Reporter.log("The Name of the Product Chosen is : " + ProductTitle, true);
+        String confirmedProductTitle = driver.findElement(By.id("productTitle")).getText();
+        Reporter.log("The Name of the Product on Confirmation Page is : " + confirmedProductTitle, true);
 
 
-        String ButtonName = driver.findElement(By.id("wishListMainButton-announce")).getText();
-        Reporter.log("The button to test is : " + ButtonName, true);
-        WebElement AddButton = driver.findElement(By.id("wishListMainButton-announce"));
+        String buttonName = driver.findElement(By.id("wishListMainButton-announce")).getText();
+        Reporter.log("The button to test is : " + buttonName, true);
+        WebElement addButton = driver.findElement(By.id("wishListMainButton-announce"));
 
 
         // System Testing: Test if Add to Cart Button Exists on page
-        Assert.assertEquals(true, AddButton.isDisplayed());
+        Assert.assertEquals(true, addButton.isDisplayed());
         driver.findElement(By.id("wishListMainButton-announce")).click();
     }
 
     //Product1: locator for Sony 55 inch TV
     public static void clickOnProduct(WebDriver driver) {
 
-        int searchCnt = driver.findElements(By.cssSelector("div.sg-col-inner > div.a-section.a-spacing-none > h2.a-size-mini.a-spacing-none.a-color-base.s-line-clamp-2 > a.a-link-normal.a-text-normal > span")).size();
+        int searchCnt = driver.findElements(By.cssSelector("a.a-link-normal.a-text-normal > span")).size();
         Reporter.log(" The total Number of Products for the search is :  " + searchCnt, true);
 
         Random rand = new Random();
         int rand_int1 = rand.nextInt(searchCnt);
+        Reporter.log(" User is selecting the Product number :  " + rand_int1, true);
 
-        driver.findElement(By.cssSelector(" a.a-link-normal.a-text-normal > span")).click();
+        WebElement searchResult = driver.findElement(By.cssSelector(".s-result-list > div:nth-child(" + rand_int1 + ")"));
+        WebElement productToBeSelected = searchResult.findElement(By.cssSelector("a.a-link-normal.a-text-normal > span"));
+
+        productToBeSelected.click();
 
 
-        //     driver.findElement(By.xpath("//div[@class='s-result-list s-search-results sg-row']/div[" + rand_int1 + "]//div[@class='a-section a-spacing-none'][1]")).click();
     }
 
     public static void clickOnSignIn(WebDriver driver) {
         WebElement submitBtn = driver.findElement(By.id("continue"));
         Assert.assertEquals(true, submitBtn.isDisplayed());
+        Reporter.log("User has arrived on the Sign Page:" ,true);
 
     }
 
@@ -82,9 +86,8 @@ public class AddToShoppingCartPage {
         clickOnProduct(driver);
         Reporter.log("Searched Product Interested to Shop and added to the shopping cart", true);
         clickOnProceedCheckout(driver);
+
         clickOnSignIn(driver);
-
-
     }
 
 }
