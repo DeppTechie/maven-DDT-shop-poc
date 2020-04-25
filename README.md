@@ -24,7 +24,7 @@ Diiferent sets of inputs are passed to test cases using DataProviderClass and ex
   All the methods that are defined to find and send the required keys to perform action on  web elements, can be re used in test classes   to perform the test.
   
 3)testclass package:
-  All the test cases are wriiten in test class which read input data from DataProviderClass or Excel to perform the test.
+  All the test cases are written in test class which read input data from DataProviderClass or Excel to perform the test.
 
 ***************************************************************************************************************************************
 # How to run test
@@ -49,5 +49,7 @@ mvn test
 
 ****************************************************************************************************************************************
 # Reports
-HTML reports like emailable reort.html, index.html are generated under target folder. 
+- Extent report are generated with screenshots on failure and pass in Automation_Test_Results.html.
+
+HTML reports like emailable reort.html generated under target folder. 
 These reports are very useful to analyse the results in a quick and more convenient way.

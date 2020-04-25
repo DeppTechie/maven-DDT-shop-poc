@@ -12,6 +12,7 @@ build/
 .gradle
 .gradle/*
 classes/
+Automation_Test_Results.html
 # Eclipse
 /bin
 *.jar
